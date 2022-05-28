@@ -1,0 +1,185 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="600"
+			 	Width="1000" Height="600"
+             x:Class="CursWorkAvalonia.Views.DataBaseView"
+			 Background="Gray">
+	<Grid>
+		<TabControl Grid.Column="0" Grid.Row="0" BorderThickness="3" Background="LightGray">
+			<!-- каждый tab item отвечает за свое отношение -->
+			<TabItem Header="Группы" VerticalContentAlignment="Center" BorderBrush="Black" Background="White" BorderThickness="0.5">
+				<Grid RowDefinitions="20*,*">
+					<Grid Grid.Row="0">
+						<DataGrid BorderBrush="Black" Background="LightSlateGray" Items="{Binding $parent[Window].DataContext.Group}" AutoGenerateColumns="False">
+							<DataGrid.Columns>
+								<!-- колонки кжд отношения -->
+								<DataGridTextColumn Header="GroupId" Binding="{Binding GroupId}"/>
+								<DataGridTextColumn Header="MatchId" Binding="{Binding MatchId}"/>
+								<DataGridTextColumn Header="GroupNum" Binding="{Binding GroupNum}"/>
+								<DataGridTemplateColumn Header="Удалить">
+									<!-- кнопка удаления -->
+									<DataTemplate>
+										<Button CommandParameter="{Binding}" Command="{Binding $parent[Window].DataContext.DeleteGroup}" Grid.Row="2" Name="Group" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+											Удалить
+										</Button>
+									</DataTemplate>
+								</DataGridTemplateColumn>
+							</DataGrid.Columns>
+						</DataGrid>
+					</Grid>
+					<!--кнопка добавления-->
+					<Button Grid.Row="1"  Command="{Binding $parent[Window].DataContext.CreateGroup}"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+						Добавить
+					</Button>
+				</Grid>
+			</TabItem>
+
+			<!-- Далее едентично для каждого отношения (таблицы) -->
+			
+			<TabItem    Header="Результаты группы" VerticalContentAlignment="Center" BorderBrush="Black" Background="White" BorderThickness="0.5">
+				<Grid RowDefinitions="20*,*">
+					<Grid Grid.Row="0">
+						<DataGrid  BorderBrush="Black" Background="LightSlateGray" Items="{Binding $parent[Window].DataContext.GroupsResault}" AutoGenerateColumns="False">
+							<DataGrid.Columns>
+								<DataGridTextColumn Header="GroupsTeamResId" Binding="{Binding GroupsTeamResId}"/>
+								<DataGridTextColumn Header="Team" Binding="{Binding Team}"/>
+								<DataGridTextColumn Header="Place" Binding="{Binding Place}"/>
+								<DataGridTextColumn Header="GamesPlayed" Binding="{Binding GamesPlayed}"/>
+								<DataGridTextColumn Header="Wins" Binding="{Binding Wins}"/>
+								<DataGridTextColumn Header="Draws" Binding="{Binding Draws}"/>
+								<DataGridTextColumn Header="Loses" Binding="{Binding Loses}"/>
+								<DataGridTextColumn Header="GfBallsScored" Binding="{Binding GfBallsScored}"/>
+								<DataGridTextColumn Header="GaBallsConceded" Binding="{Binding GaBallsConceded}"/>
+								<DataGridTextColumn Header="GdAccountDifference" Binding="{Binding GdAccountDifference}"/>
+								<DataGridTextColumn Header="PtsPoints" Binding="{Binding PtsPoints}"/>
+								<DataGridTemplateColumn Header="Удалить">
+									<DataTemplate>
+										<Button CommandParameter="{Binding}" Command="{Binding $parent[Window].DataContext.DeleteGroupResault}" Grid.Row="2" Name="Group" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+											Удалить
+										</Button>
+									</DataTemplate>
+								</DataGridTemplateColumn>
+							</DataGrid.Columns>
+						</DataGrid>
+					</Grid>
+					<Button Grid.Row="1"  Command="{Binding $parent[Window].DataContext.CreateGroupResault}"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+						Добавить
+					</Button>
+				</Grid>
+			</TabItem>
+			
+			<TabItem   Header="Матчи" VerticalContentAlignment="Center" BorderBrush="Black" Background="White" BorderThickness="0.5">
+				<Grid RowDefinitions="20*,*">
+					<Grid Grid.Row="0">
+						<DataGrid BorderBrush="Black" Background="LightSlateGray" Items="{Binding $parent[Window].DataContext.Match}" AutoGenerateColumns="False">
+							<DataGrid.Columns>
+								<DataGridTextColumn Header="MatchId" Binding="{Binding MatchId}"/>
+								<DataGridTextColumn Header="Date" Binding="{Binding Date}"/>
+								<DataGridTextColumn Header="FirstTeam" Binding="{Binding FirstTeam}"/>
+								<DataGridTextColumn Header="SecondTeam" Binding="{Binding SecondTeam}"/>
+								<DataGridTextColumn Header="FirstTeamResault" Binding="{Binding FirstTeamResault}"/>
+								<DataGridTextColumn Header="SecondTeamResault" Binding="{Binding SecondTeamResault}"/>
+								<DataGridTextColumn Header="WhoWon" Binding="{Binding WhoWon}"/>
+								<DataGridTemplateColumn Header="Удалить">
+									<DataTemplate>
+										<Button CommandParameter="{Binding}" Command="{Binding $parent[Window].DataContext.DeleteMatch}" Grid.Row="2" Name="Group" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+											Удалить
+										</Button>
+									</DataTemplate>
+								</DataGridTemplateColumn>
+							</DataGrid.Columns>
+						</DataGrid>
+					</Grid>
+					<Button Grid.Row="1"  Command="{Binding $parent[Window].DataContext.CreateMatch}"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+						Добавить
+					</Button>
+				</Grid>
+			</TabItem>
+			
+			<TabItem  Header="Четверти" VerticalContentAlignment="Center" BorderBrush="Black" Background="White" BorderThickness="0.5">
+				<Grid RowDefinitions="20*,*">
+					<Grid Grid.Row="0">
+						<DataGrid BorderBrush="Black" Background="LightSlateGray" Items="{Binding $parent[Window].DataContext.Quarter}" AutoGenerateColumns="False">
+							<DataGrid.Columns>
+								<DataGridTextColumn Header="QuartersId" Binding="{Binding QuartersId}"/>
+								<DataGridTextColumn Header="MatchId" Binding="{Binding MatchId}"/>
+								<DataGridTextColumn Header="QuartersNum" Binding="{Binding QuartersNum}"/>
+								<DataGridTemplateColumn Header="Удалить">
+									<DataTemplate>
+										<Button CommandParameter="{Binding}" Command="{Binding $parent[Window].DataContext.DeleteQuarter}" Grid.Row="2" Name="Group" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+											Удалить
+										</Button>
+									</DataTemplate>
+								</DataGridTemplateColumn>
+							</DataGrid.Columns>
+						</DataGrid>
+					</Grid>
+					<Button Grid.Row="1"  Command="{Binding $parent[Window].DataContext.CreateQuarter}"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+						Добавить
+					</Button>
+				</Grid>
+			</TabItem>
+			
+			<TabItem  Header="Результаты четверти" VerticalContentAlignment="Center" BorderBrush="Black" Background="White" BorderThickness="0.5">
+				<Grid RowDefinitions="20*,*">
+					<Grid Grid.Row="0">
+						<DataGrid BorderBrush="Black" Background="LightSlateGray" Items="{Binding $parent[Window].DataContext.QuartersResault}" AutoGenerateColumns="False">
+							<DataGrid.Columns>
+								<DataGridTextColumn Header="QuartersTeamResId" Binding="{Binding QuartersTeamResId}"/>
+								<DataGridTextColumn Header="Teams" Binding="{Binding Teams}"/>
+								<DataGridTextColumn Header="Place" Binding="{Binding Place}"/>
+								<DataGridTextColumn Header="GamesPlayed" Binding="{Binding GamesPlayed}"/>
+								<DataGridTextColumn Header="Wins" Binding="{Binding Wins}"/>
+								<DataGridTextColumn Header="Draws" Binding="{Binding Draws}"/>
+								<DataGridTextColumn Header="Loses" Binding="{Binding Loses}"/>
+								<DataGridTextColumn Header="GfBallsScored" Binding="{Binding GfBallsScored}"/>
+								<DataGridTextColumn Header="GaBallsConceded" Binding="{Binding GaBallsConceded}"/>
+								<DataGridTextColumn Header="GdAccountDifference" Binding="{Binding GdAccountDifference}"/>
+								<DataGridTextColumn Header="PtsPoints" Binding="{Binding PtsPoints}"/>
+								<DataGridTemplateColumn Header="Удалить">
+									<DataTemplate>
+										<Button CommandParameter="{Binding}" Command="{Binding $parent[Window].DataContext.DeleteQuartersResault}" Grid.Row="2" Name="Group" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+											Удалить
+										</Button>
+									</DataTemplate>
+								</DataGridTemplateColumn>
+							</DataGrid.Columns>
+						</DataGrid>
+					</Grid>
+					<Button Grid.Row="1"  Command="{Binding $parent[Window].DataContext.CreateQuartersResault}"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+						Добавить
+					</Button>
+				</Grid>
+			</TabItem>
+			
+			<TabItem  Header="Команды" VerticalContentAlignment="Center" BorderBrush="Black" Background="White" BorderThickness="0.5">
+				<Grid RowDefinitions="20*,*">
+					<Grid Grid.Row="0">
+						<DataGrid BorderBrush="Black" Background="LightSlateGray" Items="{Binding $parent[Window].DataContext.Team}" AutoGenerateColumns="False">
+							<DataGrid.Columns>
+								<DataGridTextColumn Header="TeamName" Binding="{Binding TeamName}"/>
+								<DataGridTextColumn Header="Goalkeepers" Binding="{Binding Goalkeepers}"/>
+								<DataGridTextColumn Header="Defenders" Binding="{Binding Defenders}"/>
+								<DataGridTextColumn Header="Midfielders" Binding="{Binding Midfielders}"/>
+								<DataGridTextColumn Header="Fowards" Binding="{Binding Fowards}"/>
+								<DataGridTemplateColumn Header="Удалить">
+									<DataTemplate>
+										<Button CommandParameter="{Binding}" Command="{Binding $parent[Window].DataContext.DeleteTeam}" Grid.Row="2" Name="Group" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+											Удалить
+										</Button>
+									</DataTemplate>
+								</DataGridTemplateColumn>
+							</DataGrid.Columns>
+						</DataGrid>
+					</Grid>
+					<Button Grid.Row="1"  Command="{Binding $parent[Window].DataContext.CreateTeam}"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+						Добавить
+					</Button>
+				</Grid>
+			</TabItem>
+			
+		</TabControl>
+	</Grid>
+</UserControl>
